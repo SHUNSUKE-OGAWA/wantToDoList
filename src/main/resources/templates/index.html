@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
+<form method="get" th:action="@{/wanttodo/login}">
+	<input type="submit" value="ログイン画面へ">
+</form>
 </body>
 </html>
