@@ -1,7 +1,16 @@
 package com.example.demo;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class SignupForm {
+	
+	@NotBlank
+	@Size(min = 3, max = 50)
 	private String username;
+	
+	@NotBlank
+	@Size(min = 6, max = 30)
     private String password;
 
     public String getUsername() {
