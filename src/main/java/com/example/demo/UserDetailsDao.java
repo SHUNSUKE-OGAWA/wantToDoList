@@ -9,5 +9,7 @@ public interface UserDetailsDao {
 	void insertUser(String username, String password, String authority);
 	
 	int findUserCountByUser(String username);
+	
+	public int findUserIdByUser(String username);
 
 }

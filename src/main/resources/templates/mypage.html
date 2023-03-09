@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
+mypageでーす
+<div th:text="'お前のユーザーIDは' + ${userId} + だよ"></div>
+	<form th:action="@{/logout}" method="post">
+        <input type="submit" value="ログアウト" />
+    </for>
+    
+<table>
+	<tr th:each="obj : ${list}">
+		<td th:text=${obj.userId}></td>
+		<td th:text=${obj.todoId}></td>
+		<td th:text=${obj.significance}></td>
+		<td th:text=${obj.method}></td>
+		<td th:text=${obj.barrier}></td>
+		<td th:text=${obj.advantage}></td>
+		<td th:text=${obj.disadvantage}></td>
+	</tr>
+</table>
 </body>
 </html>

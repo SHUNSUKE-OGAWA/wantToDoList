@@ -33,5 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return true;
     }
+	
+	public int getUserId(String username) {
+		return userDetailsDao.findUserIdByUser(username);
+	}
 
 }

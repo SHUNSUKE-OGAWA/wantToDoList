@@ -1,7 +1,12 @@
 package com.example.demo.app;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.SignupForm;
+import com.example.demo.Todo;
+import com.example.demo.TodoServiceImpl;
 import com.example.demo.UserDetailsServiceImpl;
 
 @Controller
@@ -20,8 +27,24 @@ public class AppController {
 	@Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 	
+	@Autowired
+	private TodoServiceImpl todoServiceImpl;
 	
 	@GetMapping()
+	public String mypage(Model model) {
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		model.addAttribute("userId", userDetailsServiceImpl.getUserId(authentication.getName()));
+		
+		List<Todo> list = todoServiceImpl.findAll();
+		model.addAttribute("list", list);
+		
+		return "mypage";
+	}
+	
+	
+	
+	@GetMapping("/index")
     public String index() {
     	return "index";
     }
@@ -55,5 +78,7 @@ public class AppController {
         }
         return "redirect:/";
     }
+    
+    
 
 }

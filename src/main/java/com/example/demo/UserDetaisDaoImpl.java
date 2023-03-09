@@ -45,5 +45,13 @@ public class UserDetaisDaoImpl implements UserDetailsDao {
         int count = jdbcTemplate.queryForObject(sql, Integer.class, new Object[] { username });
         return count;
 	}
+	
+	@Override
+	public int findUserIdByUser(String username) {
+		String sql = "SELECT userId FROM user WHERE name = ?";
+		int id = jdbcTemplate.queryForObject(sql, Integer.class, new Object[] { username });
+		return id;
+		
+	}
 
 }
