@@ -5,16 +5,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-mypageでーす
+<h1>My Page</h1>
 <div th:text="'お前のユーザーIDは' + ${userId} + だよ"></div>
-	<form th:action="@{/logout}" method="post">
-        <input type="submit" value="ログアウト" />
-    </for>
-    
+
+
+<form method="POST" th:action="@{/insert}" th:object="${todoForm}">
+	<label>やりたいこと：</label>
+	<input type="text" name="title" th:value="*{title}" /><br>
+	<label>それをやる意味は何か：</label>
+	<input type="text" name="significance" th:value="*{significance}" /><br>
+	<label>具体的な手順・方法：</label>
+	<input type="text" name="method" th:value="*{method}" /><br>
+	<label>それをやる上で障壁になりそうなもの：</label>
+	<input type="text" name="barrier" th:value="*{barrier}" /><br>
+	<label>それをやるメリット：</label>
+	<input type="text" name="advantage" th:value="*{advantage}" /><br>
+	<label>それをやらないデメリット：</label>
+	<input type="text" name="disadvantage" th:value="*{disadvantage}" /><br>
+	<input type="submit" value="追加">
+</form>
+<br>
 <table>
 	<tr th:each="obj : ${list}">
 		<td th:text=${obj.userId}></td>
 		<td th:text=${obj.todoId}></td>
+		<td th:text=${obj.title}></td>
 		<td th:text=${obj.significance}></td>
 		<td th:text=${obj.method}></td>
 		<td th:text=${obj.barrier}></td>
@@ -22,5 +37,9 @@ mypageでーす
 		<td th:text=${obj.disadvantage}></td>
 	</tr>
 </table>
+
+<form th:action="@{/logout}" method="post">
+	<input type="submit" value="ログアウト" />
+</form>
 </body>
 </html>

@@ -17,5 +17,10 @@ public class TodoServiceImpl implements TodoService {
 	public List<Todo> findAll() {
 		return dao.findAll();
 	}
+	
+	@Override
+	public void insert(Todo todo) {
+		dao.insert(todo);
+	}
 
 }

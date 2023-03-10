@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.SignupForm;
 import com.example.demo.Todo;
+import com.example.demo.TodoForm;
 import com.example.demo.TodoServiceImpl;
 import com.example.demo.UserDetailsServiceImpl;
 
@@ -31,7 +32,7 @@ public class AppController {
 	private TodoServiceImpl todoServiceImpl;
 	
 	@GetMapping()
-	public String mypage(Model model) {
+	public String mypage(TodoForm todoForm, Model model) {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		model.addAttribute("userId", userDetailsServiceImpl.getUserId(authentication.getName()));
@@ -41,8 +42,6 @@ public class AppController {
 		
 		return "mypage";
 	}
-	
-	
 	
 	@GetMapping("/index")
     public String index() {
@@ -77,6 +76,25 @@ public class AppController {
             return "signup";
         }
         return "redirect:/";
+    }
+    
+    @PostMapping("/insert")
+    public String insert(TodoForm todoForm, Model model) {
+    	SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		
+    	Todo todo = new Todo();
+    	todo.setUserId(userDetailsServiceImpl.getUserId(authentication.getName()));
+    	todo.setTitle(todoForm.getTitle());
+    	todo.setSignificance(todoForm.getSignificance());
+    	todo.setMethod(todoForm.getMethod());
+    	todo.setBarrier(todoForm.getBarrier());
+    	todo.setAdvantage(todoForm.getAdvantage());
+    	todo.setDisadvantage(todoForm.getDisadvantage());
+    	todoServiceImpl.insert(todo);
+    	
+    	return "redirect:/";
+        
     }
     
     

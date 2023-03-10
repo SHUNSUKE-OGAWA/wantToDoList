@@ -3,7 +3,14 @@ package com.example.demo;
 public class Todo {
 	private int todoId;
 	private int userId;
-	private String significance, method, barrier, advantage, disadvantage;
+	private String title, significance, method, barrier, advantage, disadvantage;
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public int getTodoId() {
 		return todoId;
 	}

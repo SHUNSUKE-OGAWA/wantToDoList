@@ -18,8 +18,8 @@ public class TodoDaoImpl implements TodoDao {
 
 	@Override
 	public List<Todo> findAll() {
-		String sql = "SELECT todoId, todo.userId, significance, method, barrier, "
-				+ "advantage, disadvantage FROM todo "
+		String sql = "SELECT todoId, todo.userId, title, significance, "
+				+ "method, barrier, advantage, disadvantage FROM todo "
 				+ "INNER JOIN user ON todo.userId = user.userId";
 
 		//タスク一覧をMapのListで取得
@@ -34,6 +34,7 @@ public class TodoDaoImpl implements TodoDao {
 			Todo todo = new Todo();
 			todo.setTodoId((Integer)result.get("todoId"));
 			todo.setUserId((Integer)result.get("userId"));
+			todo.setTitle((String)result.get("title"));
 			todo.setSignificance((String)result.get("significance"));
 			todo.setMethod((String)result.get("method"));
 			todo.setBarrier((String)result.get("barrier"));
@@ -44,6 +45,15 @@ public class TodoDaoImpl implements TodoDao {
 			list.add(todo);
 		}
 		return list;
+	}
+
+	@Override
+	public void insert(Todo todo) {
+		jdbcTemplate.update("INSERT INTO todo(userId, todoId, title, significance, "
+				+ "method, barrier, advantage, disadvantage) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
+				todo.getUserId(), todo.getTodoId(), todo.getTitle(), todo.getSignificance(),
+				todo.getMethod(), todo.getBarrier(), todo.getAdvantage(), todo.getDisadvantage());
+		
 	}
 
 }

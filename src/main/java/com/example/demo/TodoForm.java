@@ -3,12 +3,13 @@ package com.example.demo;
 public class TodoForm {
 	
 	private int userId;
-	private String significance, method, barrier, advantage, disadvantage;
+	private String title, significance, method, barrier, advantage, disadvantage;
 	private boolean newTodo;
 	
 	public TodoForm() {}
 	
 	public TodoForm(int userId, 
+			String title,
 			String significance, 
 			String method, 
 			String barrier, 
@@ -17,12 +18,21 @@ public class TodoForm {
 			boolean newTodo) {
 		
 		this.userId = userId;
+		this.title = title;
 		this.significance = significance;
 		this.method = method;
 		this.barrier = barrier;
 		this.advantage = advantage;
 		this.disadvantage = disadvantage;
 		this.newTodo = newTodo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getUserId() {
