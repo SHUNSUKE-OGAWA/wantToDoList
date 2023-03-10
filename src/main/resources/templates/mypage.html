@@ -25,16 +25,19 @@
 	<input type="submit" value="追加">
 </form>
 <br>
+<h2>やりたいこと一覧</h2>
 <table>
 	<tr th:each="obj : ${list}">
-		<td th:text=${obj.userId}></td>
-		<td th:text=${obj.todoId}></td>
-		<td th:text=${obj.title}></td>
-		<td th:text=${obj.significance}></td>
-		<td th:text=${obj.method}></td>
-		<td th:text=${obj.barrier}></td>
-		<td th:text=${obj.advantage}></td>
-		<td th:text=${obj.disadvantage}></td>
+		<th:block th:if="${userId == obj.userId}">
+			<td th:text=${obj.userId}></td>
+			<td th:text=${obj.todoId}></td>
+			<td th:text=${obj.title}></td>
+			<td th:text=${obj.significance}></td>
+			<td th:text=${obj.method}></td>
+			<td th:text=${obj.barrier}></td>
+			<td th:text=${obj.advantage}></td>
+			<td th:text=${obj.disadvantage}></td>
+		</th:block>
 	</tr>
 </table>
 
