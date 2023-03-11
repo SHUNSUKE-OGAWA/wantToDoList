@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.SignupForm;
 import com.example.demo.Todo;
@@ -95,6 +96,17 @@ public class AppController {
     	
     	return "redirect:/";
         
+    }
+    
+    @PostMapping("/delete")
+    public String delete(
+    	@RequestParam("todoId") int todoId,
+    	Model model) {
+
+    	//タスクを一件削除しリダイレクト
+    	todoServiceImpl.deleteById(todoId);
+
+        return "redirect:/";
     }
     
     

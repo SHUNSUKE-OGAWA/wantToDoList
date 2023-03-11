@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -18,9 +19,15 @@ public class TodoServiceImpl implements TodoService {
 		return dao.findAll();
 	}
 	
+	@Transactional
 	@Override
 	public void insert(Todo todo) {
 		dao.insert(todo);
+	}
+	
+	@Override
+	public void deleteById(int todoId) {
+		dao.deleteById(todoId);
 	}
 
 }

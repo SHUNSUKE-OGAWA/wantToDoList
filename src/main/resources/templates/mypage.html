@@ -37,6 +37,12 @@
 			<td th:text=${obj.barrier}></td>
 			<td th:text=${obj.advantage}></td>
 			<td th:text=${obj.disadvantage}></td>
+			<td>
+				<form method="POST" th:action="@{/delete}">
+					<input type="hidden" name="todoId" th:value="${obj.todoId}">
+					<input type="submit" value="削除">
+				</form>
+			</td>
 		</th:block>
 	</tr>
 </table>

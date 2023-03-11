@@ -6,5 +6,6 @@ public interface TodoDao {
 	
 	List<Todo> findAll();
 	void insert(Todo todo);
+	int deleteById(int todoId);
 
 }

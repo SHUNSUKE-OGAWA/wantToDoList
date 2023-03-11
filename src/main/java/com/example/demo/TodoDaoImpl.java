@@ -22,13 +22,13 @@ public class TodoDaoImpl implements TodoDao {
 				+ "method, barrier, advantage, disadvantage FROM todo "
 				+ "INNER JOIN user ON todo.userId = user.userId";
 
-		//タスク一覧をMapのListで取得
+		//todo一覧をMapのListで取得
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 
 		//return用の空のListを用意
 		List<Todo> list = new ArrayList<>();
 
-		//二つのテーブルのデータをTaskにまとめる
+		//二つのテーブルのデータをTodoにまとめる
 		for(Map<String, Object> result : resultList) {
 
 			Todo todo = new Todo();
@@ -54,6 +54,11 @@ public class TodoDaoImpl implements TodoDao {
 				todo.getUserId(), todo.getTodoId(), todo.getTitle(), todo.getSignificance(),
 				todo.getMethod(), todo.getBarrier(), todo.getAdvantage(), todo.getDisadvantage());
 		
+	}
+	
+	@Override
+	public int deleteById(int todoId) {
+		return jdbcTemplate.update("DELETE FROM todo WHERE todoId = ?", todoId);
 	}
 
 }
