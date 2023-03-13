@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.SignupForm;
 import com.example.demo.Todo;
@@ -125,9 +126,27 @@ public class AppController {
     	todoForm.setDisadvantage(todo.getDisadvantage());
     	
     	model.addAttribute("todoForm", todoForm);
-    	
+    	model.addAttribute("todoId", todo.getTodoId());
     	return "checkTodo";
     }
+    
+    @PostMapping("/update")
+    public String update(TodoForm todoForm, @RequestParam("todoId") int todoId, 
+    		RedirectAttributes redirectAttributes) {
+    	Todo todo = new Todo();
+    	todo.setTitle(todoForm.getTitle());
+    	todo.setSignificance(todoForm.getSignificance());
+    	todo.setMethod(todoForm.getMethod());
+    	todo.setBarrier(todoForm.getBarrier());
+    	todo.setAdvantage(todoForm.getAdvantage());
+    	todo.setDisadvantage(todoForm.getDisadvantage());
+    	todo.setTodoId(todoId);
+    	
+    	todoServiceImpl.update(todo);
+    	redirectAttributes.addFlashAttribute("updated", "更新しました");
+    	return "redirect:/";
+    }
+    
     
     
 }

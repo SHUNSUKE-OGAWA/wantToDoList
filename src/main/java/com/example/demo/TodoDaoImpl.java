@@ -66,8 +66,6 @@ public class TodoDaoImpl implements TodoDao {
 		todo.setDisadvantage((String)result.get("disadvantage"));
 		
 		return todo;
-		
-
 	}
 
 	@Override
@@ -76,7 +74,14 @@ public class TodoDaoImpl implements TodoDao {
 				+ "method, barrier, advantage, disadvantage) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
 				todo.getUserId(), todo.getTodoId(), todo.getTitle(), todo.getSignificance(),
 				todo.getMethod(), todo.getBarrier(), todo.getAdvantage(), todo.getDisadvantage());
-		
+	}
+	
+	@Override
+	public int update(Todo todo) {
+		return jdbcTemplate.update("UPDATE todo SET title = ?, significance = ?, method = ?, "
+				+ "barrier = ?, advantage = ?, disadvantage = ? WHERE todoId = ?",
+				todo.getTitle(), todo.getSignificance(), todo.getMethod(), 
+				todo.getBarrier(), todo.getAdvantage(), todo.getDisadvantage(), todo.getTodoId());
 	}
 	
 	@Override

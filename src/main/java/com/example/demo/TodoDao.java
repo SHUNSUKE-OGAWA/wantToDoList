@@ -7,6 +7,7 @@ public interface TodoDao {
 	List<Todo> findAll();
 	Todo findByTodoId(int todoId);
 	void insert(Todo todo);
+	int update(Todo todo);
 	int deleteByTodoId(int todoId);
 
 }

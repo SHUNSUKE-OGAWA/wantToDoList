@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -19,6 +19,7 @@
 	<input type="text" name="advantage" th:value="*{advantage}" /><br>
 	<label>それをやらないデメリット：</label>
 	<input type="text" name="disadvantage" th:value="*{disadvantage}" /><br>
+	<input type="hidden" name="todoId" th:value="${todoId}">
 	<input type="submit" value="変更">
 </form>
 
