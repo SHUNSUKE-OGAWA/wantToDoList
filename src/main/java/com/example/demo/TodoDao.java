@@ -5,7 +5,8 @@ import java.util.List;
 public interface TodoDao {
 	
 	List<Todo> findAll();
+	Todo findByTodoId(int todoId);
 	void insert(Todo todo);
-	int deleteById(int todoId);
+	int deleteByTodoId(int todoId);
 
 }

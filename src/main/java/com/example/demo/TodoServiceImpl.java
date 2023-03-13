@@ -19,6 +19,11 @@ public class TodoServiceImpl implements TodoService {
 		return dao.findAll();
 	}
 	
+	@Override
+	public Todo getTodo(int todoId) {
+		return dao.findByTodoId(todoId);
+	}
+	
 	@Transactional
 	@Override
 	public void insert(Todo todo) {
@@ -26,8 +31,8 @@ public class TodoServiceImpl implements TodoService {
 	}
 	
 	@Override
-	public void deleteById(int todoId) {
-		dao.deleteById(todoId);
+	public void deleteByTodoId(int todoId) {
+		dao.deleteByTodoId(todoId);
 	}
 
 }

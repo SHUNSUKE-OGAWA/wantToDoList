@@ -33,7 +33,7 @@ public class AppController {
 	private TodoServiceImpl todoServiceImpl;
 	
 	@GetMapping()
-	public String mypage(TodoForm todoForm, Model model) {
+	public String mypage(Model model) {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		model.addAttribute("userId", userDetailsServiceImpl.getUserId(authentication.getName()));
@@ -99,16 +99,35 @@ public class AppController {
     }
     
     @PostMapping("/delete")
-    public String delete(
-    	@RequestParam("todoId") int todoId,
-    	Model model) {
-
+    public String delete(@RequestParam("todoId") int todoId) {
     	//タスクを一件削除しリダイレクト
-    	todoServiceImpl.deleteById(todoId);
+    	todoServiceImpl.deleteByTodoId(todoId);
 
         return "redirect:/";
     }
     
+    @GetMapping("/create")
+    public String create(TodoForm todoForm) {
+    	return "createTodo";
+    }
     
-
+    @PostMapping("/check")
+    public String check(@RequestParam("todoId") int todoId, Model model) {
+    	Todo todo = todoServiceImpl.getTodo(todoId);
+    	TodoForm todoForm = new TodoForm();
+    	
+    	todoForm.setUserId(todo.getUserId());
+    	todoForm.setTitle(todo.getTitle());
+    	todoForm.setSignificance(todo.getSignificance());
+    	todoForm.setMethod(todo.getMethod());
+    	todoForm.setBarrier(todo.getBarrier());
+    	todoForm.setAdvantage(todo.getAdvantage());
+    	todoForm.setDisadvantage(todo.getDisadvantage());
+    	
+    	model.addAttribute("todoForm", todoForm);
+    	
+    	return "checkTodo";
+    }
+    
+    
 }

@@ -46,6 +46,29 @@ public class TodoDaoImpl implements TodoDao {
 		}
 		return list;
 	}
+	
+	@Override
+	public Todo findByTodoId(int todoId) {
+		String sql = "SELECT todoId, todo.userId, title, significance, "
+				+ "method, barrier, advantage, disadvantage FROM todo "
+				+ "WHERE todoId = ?";
+		
+		Map<String, Object> result = jdbcTemplate.queryForMap(sql, todoId);
+		
+		Todo todo = new Todo();
+		todo.setTodoId((Integer)result.get("todoId"));
+		todo.setUserId((Integer)result.get("userId"));
+		todo.setTitle((String)result.get("title"));
+		todo.setSignificance((String)result.get("significance"));
+		todo.setMethod((String)result.get("method"));
+		todo.setBarrier((String)result.get("barrier"));
+		todo.setAdvantage((String)result.get("advantage"));
+		todo.setDisadvantage((String)result.get("disadvantage"));
+		
+		return todo;
+		
+
+	}
 
 	@Override
 	public void insert(Todo todo) {
@@ -57,7 +80,7 @@ public class TodoDaoImpl implements TodoDao {
 	}
 	
 	@Override
-	public int deleteById(int todoId) {
+	public int deleteByTodoId(int todoId) {
 		return jdbcTemplate.update("DELETE FROM todo WHERE todoId = ?", todoId);
 	}
 
