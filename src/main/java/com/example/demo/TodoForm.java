@@ -1,10 +1,35 @@
 package com.example.demo;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class TodoForm {
 	
 	private int userId;
-	private String title, significance, method, barrier, advantage, disadvantage;
-	private boolean newTodo;
+	
+	@NotBlank(message = "必須項目です")
+	@Size(max = 500, message = "500文字以内にしてください")
+	private String title;
+	
+	@NotBlank(message = "必須項目です")
+	@Size(max = 500, message = "500文字以内にしてください")
+	private String significance;
+	
+	@NotBlank(message = "必須項目です")
+	@Size(max = 500, message = "500文字以内にしてください")
+	private String method;
+	
+	@NotBlank(message = "必須項目です")
+	@Size(max = 500, message = "500文字以内にしてください")
+	private String barrier;
+	
+	@NotBlank(message = "必須項目です")
+	@Size(max = 500, message = "500文字以内にしてください")
+	private String advantage;
+	
+	@NotBlank(message = "必須項目です")
+	@Size(max = 500, message = "500文字以内にしてください")
+	private String disadvantage;
 	
 	public TodoForm() {}
 	
@@ -14,8 +39,7 @@ public class TodoForm {
 			String method, 
 			String barrier, 
 			String advantage, 
-			String disadvantage, 
-			boolean newTodo) {
+			String disadvantage) {
 		
 		this.userId = userId;
 		this.title = title;
@@ -24,7 +48,6 @@ public class TodoForm {
 		this.barrier = barrier;
 		this.advantage = advantage;
 		this.disadvantage = disadvantage;
-		this.newTodo = newTodo;
 	}
 
 	public String getTitle() {
@@ -82,15 +105,6 @@ public class TodoForm {
 	public void setDisadvantage(String disadvantage) {
 		this.disadvantage = disadvantage;
 	}
-
-	public boolean isNewTodo() {
-		return newTodo;
-	}
-
-	public void setNewTodo(boolean newTodo) {
-		this.newTodo = newTodo;
-	}
-	
 	
 
 }

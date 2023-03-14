@@ -9,16 +9,22 @@
 <form method="POST" th:action="@{/insert}" th:object="${todoForm}">
 	<label>やりたいこと：</label>
 	<input type="text" name="title" th:value="*{title}" /><br>
+	<div th:if="${#fields.hasErrors('title')}" th:errors="${todoForm.title}"></div>
 	<label>なぜそれをやるのか：</label>
 	<input type="text" name="significance" th:value="*{significance}" /><br>
+	<div th:if="${#fields.hasErrors('significance')}" th:errors="${todoForm.significance}"></div>
 	<label>具体的な手順・方法：</label>
 	<input type="text" name="method" th:value="*{method}" /><br>
+	<div th:if="${#fields.hasErrors('method')}" th:errors="${todoForm.method}"></div>
 	<label>それをやる上で障壁になりそうなもの：</label>
 	<input type="text" name="barrier" th:value="*{barrier}" /><br>
+	<div th:if="${#fields.hasErrors('barrier')}" th:errors="${todoForm.barrier}"></div>
 	<label>それをやるメリット：</label>
 	<input type="text" name="advantage" th:value="*{advantage}" /><br>
+	<div th:if="${#fields.hasErrors('advantage')}" th:errors="${todoForm.advantage}"></div>
 	<label>それをやらないデメリット：</label>
 	<input type="text" name="disadvantage" th:value="*{disadvantage}" /><br>
+	<div th:if="${#fields.hasErrors('disadvantage')}" th:errors="${todoForm.disadvantage}"></div>
 	<input type="submit" value="追加">
 </form>
 

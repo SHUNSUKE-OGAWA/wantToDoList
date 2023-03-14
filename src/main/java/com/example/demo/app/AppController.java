@@ -81,21 +81,27 @@ public class AppController {
     }
     
     @PostMapping("/insert")
-    public String insert(TodoForm todoForm, Model model) {
-    	SecurityContext context = SecurityContextHolder.getContext();
-		Authentication authentication = context.getAuthentication();
-		
-    	Todo todo = new Todo();
-    	todo.setUserId(userDetailsServiceImpl.getUserId(authentication.getName()));
-    	todo.setTitle(todoForm.getTitle());
-    	todo.setSignificance(todoForm.getSignificance());
-    	todo.setMethod(todoForm.getMethod());
-    	todo.setBarrier(todoForm.getBarrier());
-    	todo.setAdvantage(todoForm.getAdvantage());
-    	todo.setDisadvantage(todoForm.getDisadvantage());
-    	todoServiceImpl.insert(todo);
+    public String insert(@Validated TodoForm todoForm,BindingResult result, Model model) {
     	
-    	return "redirect:/";
+    	if(!result.hasErrors()) {
+    		SecurityContext context = SecurityContextHolder.getContext();
+    		Authentication authentication = context.getAuthentication();
+        	Todo todo = new Todo();
+        	todo.setUserId(userDetailsServiceImpl.getUserId(authentication.getName()));
+        	todo.setTitle(todoForm.getTitle());
+        	todo.setSignificance(todoForm.getSignificance());
+        	todo.setMethod(todoForm.getMethod());
+        	todo.setBarrier(todoForm.getBarrier());
+        	todo.setAdvantage(todoForm.getAdvantage());
+        	todo.setDisadvantage(todoForm.getDisadvantage());
+        	todoServiceImpl.insert(todo);
+        	
+        	return "redirect:/";
+    	}else {
+    		return "createTodo";
+    	}
+    	
+    	
         
     }
     
@@ -131,22 +137,26 @@ public class AppController {
     }
     
     @PostMapping("/update")
-    public String update(TodoForm todoForm, @RequestParam("todoId") int todoId, 
-    		RedirectAttributes redirectAttributes) {
-    	Todo todo = new Todo();
-    	todo.setTitle(todoForm.getTitle());
-    	todo.setSignificance(todoForm.getSignificance());
-    	todo.setMethod(todoForm.getMethod());
-    	todo.setBarrier(todoForm.getBarrier());
-    	todo.setAdvantage(todoForm.getAdvantage());
-    	todo.setDisadvantage(todoForm.getDisadvantage());
-    	todo.setTodoId(todoId);
+    public String update(@Validated TodoForm todoForm, BindingResult result, @RequestParam("todoId") int todoId, 
+    		Model model, RedirectAttributes redirectAttributes) {
+    	if(!result.hasErrors()) {
+    		Todo todo = new Todo();
+        	todo.setTitle(todoForm.getTitle());
+        	todo.setSignificance(todoForm.getSignificance());
+        	todo.setMethod(todoForm.getMethod());
+        	todo.setBarrier(todoForm.getBarrier());
+        	todo.setAdvantage(todoForm.getAdvantage());
+        	todo.setDisadvantage(todoForm.getDisadvantage());
+        	todo.setTodoId(todoId);
+        	
+        	todoServiceImpl.update(todo);
+        	redirectAttributes.addFlashAttribute("updated", "更新しました");
+        	return "redirect:/";
+    	}else {
+    		model.addAttribute("todoId", todoId);
+    		return "checkTodo";
+    	}
     	
-    	todoServiceImpl.update(todo);
-    	redirectAttributes.addFlashAttribute("updated", "更新しました");
-    	return "redirect:/";
     }
-    
-    
     
 }

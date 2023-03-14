@@ -5,12 +5,12 @@ import javax.validation.constraints.Size;
 
 public class SignupForm {
 	
-	@NotBlank
-	@Size(min = 3, max = 50)
+	@NotBlank(message = "必須項目です")
+	@Size(min = 3, max = 50, message = "3〜50文字で設定してください")
 	private String username;
 	
-	@NotBlank
-	@Size(min = 6, max = 30)
+	@NotBlank(message = "必須項目です")
+	@Size(min = 6, max = 30, message = "6〜30文字で設定してください")
     private String password;
 
     public String getUsername() {
