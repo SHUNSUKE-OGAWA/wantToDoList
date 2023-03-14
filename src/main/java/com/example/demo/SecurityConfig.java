@@ -18,13 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	
 	@Autowired
     private UserDetailsService userDetailsService; 
 	
-
-    @Bean
+	@Bean
     public PasswordEncoder passwordEncoder() {
-    	//パスワードをハッシュ関数によって暗号化するやーつ
         return new BCryptPasswordEncoder();
     }
     
@@ -42,8 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .anyRequest()
-            .authenticated();
+        	.antMatchers("/index").permitAll()
+        	.antMatchers("/signup").permitAll()
+            .anyRequest().authenticated();
         http.formLogin()
             .loginPage("/login")
             .defaultSuccessUrl("/")

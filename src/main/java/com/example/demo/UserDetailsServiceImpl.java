@@ -1,36 +1,41 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	UserDetailsDao userDetailsDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-            String sql = "SELECT * FROM user WHERE name = ?";
-            Map<String, Object> map = jdbcTemplate.queryForMap(sql, username);
-            String password = (String)map.get("password");
-            Collection<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority((String)map.get("authority")));
-            return new UserDetailsImpl(username, password, authorities);
+            return userDetailsDao.findNameByUser(username);
         } catch (Exception e) {
             throw new UsernameNotFoundException("user not found.", e);
         }
     }
+	
+	@Transactional
+    public void register(String username, String password, String authority) {
+        userDetailsDao.insertUser(username, password, authority);
+    }
+	
+	public boolean isExistUser(String username) {
+        if (userDetailsDao.findUserCountByUser(username) == 0) {
+            return false;
+        }
+        return true;
+    }
+	
+	public int getUserId(String username) {
+		return userDetailsDao.findUserIdByUser(username);
+	}
 
 }
