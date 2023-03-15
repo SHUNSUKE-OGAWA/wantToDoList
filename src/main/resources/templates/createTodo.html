@@ -27,6 +27,9 @@
 	<div th:if="${#fields.hasErrors('disadvantage')}" th:errors="${todoForm.disadvantage}"></div>
 	<input type="submit" value="追加">
 </form>
+<form method="GET" th:action="@{/}">
+	<input type="submit" value="戻る">
+</form>
 
 </body>
 </html>
