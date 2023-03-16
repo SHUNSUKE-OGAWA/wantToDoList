@@ -2,35 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link th:href="@{/css/mypage.css}" rel="stylesheet"/>
+<title>マイページ</title>
 </head>
 <body>
-<h1>My Page</h1>
-<div th:text="'ユーザーID：' + ${userId}"></div>
+<div class="header">
+	<h1>Want To Do List</h1>
+</div>
 
 <h2>やりたいこと一覧</h2>
 <table>
 	<tr th:each="obj : ${list}">
 		<th:block th:if="${userId == obj.userId}">
-			<td>・</td>
-			<td th:text=${obj.userId}></td>
-			<td th:text=${obj.todoId}></td>
-			<td th:text=${obj.title}></td>
-			<td th:text=${obj.significance}></td>
-			<td th:text=${obj.method}></td>
-			<td th:text=${obj.barrier}></td>
-			<td th:text=${obj.advantage}></td>
-			<td th:text=${obj.disadvantage}></td>
-			<td>
-				<form method="POST" th:action="@{/check}">
-					<input type="hidden" name="todoId" th:value="${obj.todoId}">
-					<input type="submit" value="詳細確認・変更">
-				</form>
-			</td>
-			<td>
+			<td id="col1">・</td>
+			<td id="col2" th:text=${obj.title}></td>
+			<td id="col3">
 				<form method="POST" th:action="@{/delete}">
 					<input type="hidden" name="todoId" th:value="${obj.todoId}">
 					<input type="submit" value="削除">
+				</form>
+			</td>
+			<td id="col4">
+				<form method="POST" th:action="@{/check}">
+					<input type="hidden" name="todoId" th:value="${obj.todoId}">
+					<input type="submit" value="詳細確認・変更">
 				</form>
 			</td>
 		</th:block>
@@ -38,12 +33,14 @@
 </table>
 <br>
 
-<form method="GET" th:action="@{/create}">
-	<input type="submit" value="やりたいことを追加する">
-</form>
-
-<form th:action="@{/logout}" method="post">
-	<input type="submit" value="ログアウト" />
-</form>
+<div class="menu">
+	<form method="GET" th:action="@{/create}">
+		<input type="submit" value="やりたいことを追加する">
+	</form>
+	
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="ログアウト" />
+	</form>
+</div>
 </body>
 </html>
