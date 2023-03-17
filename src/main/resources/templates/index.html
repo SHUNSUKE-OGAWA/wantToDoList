@@ -2,10 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link th:href="@{/css/index.css}" rel="stylesheet"/>
+<title>Want To Do List</title>
 </head>
 <body>
-    <h2>Index Page</h2>
-    <a href="/login">get started</a>
+
+<div class="header">
+	<h1>Want To Do List</h1>
+</div>
+<h2>Want To Do Listへようこそ</h2>
+<div class="obj">
+	<p>
+	「Want To Do List」はタスク管理サービスではありません。<br>
+	「タスク」のような外部からの働きによって行わざるを得ないものではなく、<br>
+	「やりたいこと」と呼ばれるような内部からの働きによって「行いたい」と思うものを管理するサービスです。<br>
+	<br>
+	Q：「やりたいこと」であれば管理せずとも行えるのではないか？<br>
+	A：「やりたいこと」であっても心理的な障壁の高さ、日々の忙しさなどによってなかなか思うようにできないことはあります。<br>
+	<br>
+	そこで「Want To Do List」は「やりたいこと」を達成するために考えるべき様々な項目をフォーマット化し、<br>
+	それを実際に考え、文字として記録することでその達成を補助するサービスになっています。<br>
+	<br>
+	フォーマットは少し冗長に思えるかもしれませんが、「やりたいこと」の達成のために必要なものだと考えています。<br>
+	人生豊かにするためにぜひ活用してみてください。<br>
+	</p>
+</div>
+<a href="/login" class="btn_01">はじめる</a>
 </body>
 </html>

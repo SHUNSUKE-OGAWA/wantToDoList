@@ -43,10 +43,13 @@ td {
 
 td#col1 {
 	padding-left: 20px;
+	transform: translate(40px, 0px);
+	color:green;
+	font-weight: bold;
 }
 
 td#col2 {
-	padding-left: 100px;
+	padding-left: 0px;
 }
 
 td#col4,td#col3 {
