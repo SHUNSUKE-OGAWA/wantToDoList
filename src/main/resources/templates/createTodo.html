@@ -2,34 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link th:href="@{/css/form.css}" rel="stylesheet"/>
+<title>追加画面</title>
 </head>
 <body>
+<div class="header">
+	<h1>Want To Do List</h1>
+</div>
+<div class="contents">
 <h2>やりたいこと追加フォーム</h2>
 <form method="POST" th:action="@{/insert}" th:object="${todoForm}">
-	<label>やりたいこと：</label>
-	<input type="text" name="title" th:value="*{title}" /><br>
-	<div th:if="${#fields.hasErrors('title')}" th:errors="${todoForm.title}"></div>
-	<label>なぜそれをやるのか：</label>
-	<input type="text" name="significance" th:value="*{significance}" /><br>
-	<div th:if="${#fields.hasErrors('significance')}" th:errors="${todoForm.significance}"></div>
-	<label>具体的な手順・方法：</label>
-	<input type="text" name="method" th:value="*{method}" /><br>
-	<div th:if="${#fields.hasErrors('method')}" th:errors="${todoForm.method}"></div>
-	<label>それをやる上で障壁になりそうなもの：</label>
-	<input type="text" name="barrier" th:value="*{barrier}" /><br>
-	<div th:if="${#fields.hasErrors('barrier')}" th:errors="${todoForm.barrier}"></div>
-	<label>それをやるメリット：</label>
-	<input type="text" name="advantage" th:value="*{advantage}" /><br>
-	<div th:if="${#fields.hasErrors('advantage')}" th:errors="${todoForm.advantage}"></div>
-	<label>それをやらないデメリット：</label>
-	<input type="text" name="disadvantage" th:value="*{disadvantage}" /><br>
-	<div th:if="${#fields.hasErrors('disadvantage')}" th:errors="${todoForm.disadvantage}"></div>
-	<input type="submit" value="追加">
+	<label>やりたいこと：</label><br>
+	<div class="em" th:if="${#fields.hasErrors('title')}" th:errors="${todoForm.title}"></div>
+	<input id="in1" type="text" name="title" th:value="*{title}" /><br>
+	<br>
+	<label>なぜそれをやるのか：</label><br>
+	<div class="em" th:if="${#fields.hasErrors('significance')}" th:errors="${todoForm.significance}"></div>
+	<textarea name="significance" th:value="*{significance}" /></textarea><br>
+	<br>
+	<label>具体的な手順・方法：</label><br>
+	<div class="em" th:if="${#fields.hasErrors('method')}" th:errors="${todoForm.method}"></div>
+	<textarea name="method" th:value="*{method}" /></textarea><br>
+	<br>
+	<label>それをやる上で障壁になりそうなもの：</label><br>
+	<div class="em" th:if="${#fields.hasErrors('barrier')}" th:errors="${todoForm.barrier}"></div>
+	<textarea name="barrier" th:value="*{barrier}" /></textarea><br>
+	<br>
+	<label>それをやるメリット：</label><br>
+	<div class="em" th:if="${#fields.hasErrors('advantage')}" th:errors="${todoForm.advantage}"></div>
+	<textarea name="advantage" th:value="*{advantage}" /></textarea><br>
+	<br>
+	<label>それをやらないデメリット：</label><br>
+	<div class="em" th:if="${#fields.hasErrors('disadvantage')}" th:errors="${todoForm.disadvantage}"></div>
+	<textarea name="disadvantage" th:value="*{disadvantage}" /></textarea><br>
+	<br>
+	<input id="in2" type="submit" value="追加">
 </form>
 <form method="GET" th:action="@{/}">
-	<input type="submit" value="戻る">
+	<input id="in3" type="submit" value="戻る">
 </form>
-
+</div>
 </body>
 </html>
