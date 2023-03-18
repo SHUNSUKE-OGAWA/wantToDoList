@@ -2,27 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/login_signup.css}" rel="stylesheet"/>
     <title>ログイン</title>
 </head>
 <body>
+<div class="header">
+	<h1>Want To Do List</h1>
+</div>
+
+<div class="contents">
     <h2 class="heading">ログイン</h2>
     <form method="post" th:action="@{/login}">
-        <div th:if="${param.error}">
+        <div class="em" th:if="${param.error}">
             ログインに失敗しました
-            <div th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+            <div class="em" th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
                 <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
             </div>
         </div>
         <div th:if="${param.logout}">
             ログアウトしました
         </div>
-        <label for="username">ユーザー名</label>
+        <label for="username">ユーザー名</label><br>
         <input type="text" id="username" name="username"><br>
-        <label for="password">パスワード</label>
+        <br>
+        <label for="password">パスワード</label><br>
         <input type="password" id="password" name="password"><br>
+        <br>
         <button type="submit">ログイン</button>
     </form>
     <a href="/signup">ユーザー登録</a>
+</div>
 </body>
 </html>

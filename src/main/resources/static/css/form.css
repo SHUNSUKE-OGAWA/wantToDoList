@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+body {
+	background-color: cornsilk;
+	margin:0;
+	overflow-x: hidden;
+}
+
+.header {
+	color:white;
+	background-color: darkgreen;
+	padding: 5px;
+	width:100%;
+	text-indent: 35px;
+}
+
+h2 {
+	color: green;
+	transform: translate(430px, 50px);
+}
+
+.em {
+	color:red;
+}
+
+input#in1 {
+	width:40%;
+	height:20px;
+}
+
+input#in2,input#in3 {
+	transform: translate(85%, 0px);
+	width:15%;
+	height:35px;
+	margin:10px;
+}
+
+textarea {
+	width:40%;
+	height:150px;
+	resize:none;
+}
+
+form {
+	transform: translate(30%, 100px);
+}

@@ -8,7 +8,7 @@ public class TodoForm {
 	private int userId;
 	
 	@NotBlank(message = "必須項目です")
-	@Size(max = 500, message = "500文字以内にしてください")
+	@Size(max = 50, message = "50文字以内にしてください")
 	private String title;
 	
 	@NotBlank(message = "必須項目です")

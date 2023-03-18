@@ -26,7 +26,7 @@ import com.example.demo.UserDetailsServiceImpl;
 @Controller
 @RequestMapping("/")
 public class AppController {
-	
+
 	@Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 	
@@ -35,6 +35,7 @@ public class AppController {
 	
 	@GetMapping()
 	public String mypage(Model model) {
+		//ログイン中ユーザーのユーザーIDを取得
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		model.addAttribute("userId", userDetailsServiceImpl.getUserId(authentication.getName()));
