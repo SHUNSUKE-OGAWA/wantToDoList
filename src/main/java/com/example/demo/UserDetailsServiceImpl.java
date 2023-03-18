@@ -22,6 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
     }
 	
+	//ユーザーネームが重複してしまうかもしれないのでトランザクション処理
 	@Transactional
     public void register(String username, String password, String authority) {
         userDetailsDao.insertUser(username, password, authority);

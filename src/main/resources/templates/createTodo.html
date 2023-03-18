@@ -14,27 +14,27 @@
 <form method="POST" th:action="@{/insert}" th:object="${todoForm}">
 	<label>やりたいこと：</label><br>
 	<div class="em" th:if="${#fields.hasErrors('title')}" th:errors="${todoForm.title}"></div>
-	<input id="in1" type="text" name="title" th:value="*{title}" /><br>
+	<input id="in1" type="text" name="title" placeholder="作曲" th:value="*{title}" /><br>
 	<br>
 	<label>なぜそれをやるのか：</label><br>
 	<div class="em" th:if="${#fields.hasErrors('significance')}" th:errors="${todoForm.significance}"></div>
-	<textarea name="significance" th:value="*{significance}" /></textarea><br>
+	<textarea name="significance" placeholder="普段考えていることを曲を媒介として表現したいから" th:value="*{significance}" /></textarea><br>
 	<br>
 	<label>具体的な手順・方法：</label><br>
 	<div class="em" th:if="${#fields.hasErrors('method')}" th:errors="${todoForm.method}"></div>
-	<textarea name="method" th:value="*{method}" /></textarea><br>
+	<textarea name="method" placeholder="まずは表現したいことを歌詞にしてそれにあったコード進行を考える" th:value="*{method}" /></textarea><br>
 	<br>
 	<label>それをやる上で障壁になりそうなもの：</label><br>
 	<div class="em" th:if="${#fields.hasErrors('barrier')}" th:errors="${todoForm.barrier}"></div>
-	<textarea name="barrier" th:value="*{barrier}" /></textarea><br>
+	<textarea name="barrier" placeholder="YouTubeをみてダラダラしてしまうこと" th:value="*{barrier}" /></textarea><br>
 	<br>
 	<label>それをやるメリット：</label><br>
 	<div class="em" th:if="${#fields.hasErrors('advantage')}" th:errors="${todoForm.advantage}"></div>
-	<textarea name="advantage" th:value="*{advantage}" /></textarea><br>
+	<textarea name="advantage" placeholder="曲として自分の表現を記録に残せる" th:value="*{advantage}" /></textarea><br>
 	<br>
 	<label>それをやらないデメリット：</label><br>
 	<div class="em" th:if="${#fields.hasErrors('disadvantage')}" th:errors="${todoForm.disadvantage}"></div>
-	<textarea name="disadvantage" th:value="*{disadvantage}" /></textarea><br>
+	<textarea name="disadvantage" placeholder="表現欲を満たすことができないままになってしまう" th:value="*{disadvantage}" /></textarea><br>
 	<br>
 	<input id="in2" type="submit" value="追加">
 </form>

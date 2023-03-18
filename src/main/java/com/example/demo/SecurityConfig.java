@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+//TODO:WebSecurityConfigurerAdapterのメソッドをオーバーライドするconfigの書き方はdeprecatedなので修正する
 
 @SuppressWarnings("deprecation")
 @Configuration
