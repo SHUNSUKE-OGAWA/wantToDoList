@@ -38,7 +38,8 @@
 
 # Note
 
-WindowsOS, LinuxOS下での動作確認は行なっておりません。
+* WindowsOS, LinuxOS下での動作確認は行なっておりません。
+* Spring Secutiryで現在非推奨のWebSecurityConfigurerAdapterのメソッドをオーバーライドするConfigファイルの書き方をしています。
 
 # Author
 
