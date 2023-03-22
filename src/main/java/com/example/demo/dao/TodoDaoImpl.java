@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.Todo;
 
 @Repository
 public class TodoDaoImpl implements TodoDao {

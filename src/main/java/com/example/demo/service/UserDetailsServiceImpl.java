@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.dao.UserDetailsDao;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -37,6 +39,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	public int getUserId(String username) {
 		return userDetailsDao.findUserIdByUser(username);
+	}
+	
+	public void changePassword(String username, String password) {
+		userDetailsDao.updatePassword(username, password);
 	}
 
 }

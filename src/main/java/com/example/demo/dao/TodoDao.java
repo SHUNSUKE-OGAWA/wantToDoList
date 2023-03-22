@@ -1,6 +1,8 @@
-package com.example.demo;
+package com.example.demo.dao;
 
 import java.util.List;
+
+import com.example.demo.entity.Todo;
 
 public interface TodoDao {
 	

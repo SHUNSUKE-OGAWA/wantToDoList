@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +12,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.UserDetailsImpl;
 
 @Repository
 public class UserDetaisDaoImpl implements UserDetailsDao {
@@ -51,6 +53,13 @@ public class UserDetaisDaoImpl implements UserDetailsDao {
 		String sql = "SELECT userId FROM user WHERE name = ?";
 		int id = jdbcTemplate.queryForObject(sql, Integer.class, new Object[] { username });
 		return id;
+		
+	}
+	
+	@Override
+	public void updatePassword(String username, String password) {
+		String sql = "UPDATE user SET password = ? WHERE userId = ?";
+		jdbcTemplate.update(sql, passwordEncoder.encode(password), username);
 		
 	}
 

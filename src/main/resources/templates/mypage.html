@@ -38,6 +38,10 @@
 		<input type="submit" value="やりたいことを追加する">
 	</form>
 	
+	<form th:action="@{/changePass}" method="get">
+		<input type="submit" value="パスワードを変更する" />
+	</form>
+	
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="ログアウト" />
 	</form>

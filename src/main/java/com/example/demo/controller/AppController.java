@@ -1,4 +1,4 @@
-package com.example.demo.app;
+package com.example.demo.controller;
 
 import java.util.List;
 
@@ -17,18 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.SignupForm;
-import com.example.demo.Todo;
-import com.example.demo.TodoForm;
-import com.example.demo.TodoServiceImpl;
-import com.example.demo.UserDetailsServiceImpl;
+import com.example.demo.entity.Todo;
+import com.example.demo.form.SignupForm;
+import com.example.demo.form.TodoForm;
+import com.example.demo.service.TodoServiceImpl;
+import com.example.demo.service.UserDetailsServiceImpl;
 
 @Controller
 @RequestMapping("/")
 public class AppController {
 
 	@Autowired
-    private UserDetailsServiceImpl userDetailsServiceImpl;
+	private UserDetailsServiceImpl userDetailsServiceImpl;
 	
 	@Autowired
 	private TodoServiceImpl todoServiceImpl;
@@ -158,6 +158,11 @@ public class AppController {
     		return "checkTodo";
     	}
     	
+    }
+    
+    @GetMapping("/changePass")
+    public String changePass() {
+    	return "changePass";
     }
     
 }
