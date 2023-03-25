@@ -58,7 +58,7 @@ public class UserDetaisDaoImpl implements UserDetailsDao {
 	
 	@Override
 	public void updatePassword(String username, String password) {
-		String sql = "UPDATE user SET password = ? WHERE userId = ?";
+		String sql = "UPDATE user SET password = ? WHERE name = ?";
 		jdbcTemplate.update(sql, passwordEncoder.encode(password), username);
 		
 	}
