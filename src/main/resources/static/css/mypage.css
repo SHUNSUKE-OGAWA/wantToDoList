@@ -20,6 +20,11 @@ h2 {
 	transform: translate(145px, 50px);
 }
 
+p {
+	color: green;
+	transform: translate(145px, 50px);
+}
+
 .menu {
 	transform: translate(145px, 70px);
 }

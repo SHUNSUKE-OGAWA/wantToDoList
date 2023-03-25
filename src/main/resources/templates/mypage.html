@@ -11,6 +11,7 @@
 </div>
 
 <h2>やりたいこと一覧</h2>
+<p th:if="${updated}" th:text="${updated}"></p>
 <table>
 	<tr th:each="obj : ${list}">
 		<th:block th:if="${userId == obj.userId}">

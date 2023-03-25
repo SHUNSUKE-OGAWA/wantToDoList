@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Todo;
+import com.example.demo.form.PasswordForm;
 import com.example.demo.form.SignupForm;
 import com.example.demo.form.TodoForm;
 import com.example.demo.service.TodoServiceImpl;
@@ -151,7 +152,7 @@ public class AppController {
         	todo.setTodoId(todoId);
         	
         	todoServiceImpl.update(todo);
-        	redirectAttributes.addFlashAttribute("updated", "更新しました");
+        	redirectAttributes.addFlashAttribute("updated", "やりたいことを更新しました");
         	return "redirect:/";
     	}else {
     		model.addAttribute("todoId", todoId);
@@ -161,8 +162,24 @@ public class AppController {
     }
     
     @GetMapping("/changePass")
-    public String changePass() {
+    public String changePass(PasswordForm passwordForm) {
     	return "changePass";
+    }
+    
+    @PostMapping("/changePass")
+    public String changePass(@Validated PasswordForm passwordForm, BindingResult result,
+    		Model model, RedirectAttributes redirectAttributes) {
+    	if(!result.hasErrors()) {
+    		SecurityContext context = SecurityContextHolder.getContext();
+    		Authentication authentication = context.getAuthentication();
+    		userDetailsServiceImpl.changePassword(authentication.getName(), passwordForm.getPassword());
+    		redirectAttributes.addFlashAttribute("changed", "パスワードを変更しました");
+        	return "redirect:/";
+    	}else {
+    		return "changePass";
+    	}
+    	
+    	
     }
     
 }

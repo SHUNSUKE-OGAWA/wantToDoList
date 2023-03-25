@@ -5,6 +5,13 @@
 <title>パスワード変更ページ</title>
 </head>
 <body>
-changePassのページ
+	<h2 class="heading">パスワード変更</h2>
+	<form method="post" th:action="@{/changePass}" th:object="${passwordForm}">
+        <label for="password">パスワード</label><br>
+        <input type="password" id="password" name="password" th:value="${passwordForm.password}"><br>
+        <div class="em" th:if="${#fields.hasErrors('password')}" th:errors="${passwordForm.password}"></div>
+        <br>
+        <button type="submit">変更</button>
+    </form>
 </body>
 </html>
