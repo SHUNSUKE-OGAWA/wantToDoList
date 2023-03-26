@@ -1,0 +1,37 @@
+@charset "UTF-8";
+body {
+	background-color: cornsilk;
+	margin:0;
+	overflow-x: hidden;
+}
+
+.header {
+	color:white;
+	background-color: darkgreen;
+	padding: 5px;
+	width:100%;
+	text-indent: 35px;
+}
+
+h2 {
+	color: green;
+	transform: translate(145px, 50px);
+}
+
+.em {
+	color:red;
+}
+
+form {
+	transform: translate(40%, 120px);
+	
+}
+
+label {
+	color: green;
+	font-weight: bold;
+}
+
+.pass input {
+	width:20%;
+}

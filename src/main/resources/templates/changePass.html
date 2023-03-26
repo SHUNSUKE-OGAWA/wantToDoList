@@ -2,16 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link th:href="@{/css/changePass.css}" rel="stylesheet"/>
 <title>パスワード変更ページ</title>
 </head>
 <body>
+	<div class="header">
+		<h1>Want To Do List</h1>
+	</div>
 	<h2 class="heading">パスワード変更</h2>
-	<form method="post" th:action="@{/changePass}" th:object="${passwordForm}">
-        <label for="password">パスワード</label><br>
-        <input type="password" id="password" name="password" th:value="${passwordForm.password}"><br>
-        <div class="em" th:if="${#fields.hasErrors('password')}" th:errors="${passwordForm.password}"></div>
-        <br>
-        <button type="submit">変更</button>
-    </form>
+	<div class="pass">
+		<form method="post" th:action="@{/changePass}" th:object="${passwordForm}">
+	        <label for="password">新しいパスワード</label><br>
+	        <input type="password" id="password" name="password" th:value="${passwordForm.password}"><br>
+	        <div class="em" th:if="${#fields.hasErrors('password')}" th:errors="${passwordForm.password}"></div>
+	        <br>
+	        <button type="submit">変更</button>
+	    </form>
+	</div>
+    <form method="GET" th:action="@{/}">
+		<input type="submit" value="戻る">
+	</form>
 </body>
 </html>
